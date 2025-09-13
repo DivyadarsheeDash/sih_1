@@ -8,17 +8,16 @@ document.getElementById('cropForm').addEventListener('submit', function(e) {
         inputs[key] = parseFloat(value);
     }
 
-    // Show loading state
+    // Show results section
     document.getElementById('results').classList.remove('hidden');
     document.getElementById('predictedCrop').textContent = "Analyzing...";
-    document.getElementById('resultImage').src = "assets/images/loading.jpeg"; // ← Changed from .jpg to .jpeg
+    document.getElementById('resultImage').src = "loading.gif"; // Optional: add loading.gif
     document.getElementById('confidenceBar').style.width = "0%";
     document.getElementById('confidenceValue').textContent = "0%";
     document.getElementById('top3List').innerHTML = "";
 
-    // Simulate API call (replace with fetch() to your backend later)
+    // Simulate API response (mock prediction)
     setTimeout(() => {
-        // Mock result based on your model's output
         const mockResult = {
             predicted_crop: "Rice",
             confidence: 0.87,
@@ -31,21 +30,30 @@ document.getElementById('cropForm').addEventListener('submit', function(e) {
 
         document.getElementById('predictedCrop').textContent = mockResult.predicted_crop;
 
-        // 🚨 ALL IMAGES NOW USE .jpeg
-        document.getElementById('resultImage').src = `assets/images/${mockResult.predicted_crop.toLowerCase()}.jpeg`;
+        // Handle mixed extensions (.jpg vs .jpeg)
+        const cropName = mockResult.predicted_crop.toLowerCase();
+        const imagePath = `${cropName}.jpeg`; // Try .jpeg first
+        const fallbackPath = `${cropName}.jpg`; // Fallback to .jpg
+
+        // Set image source with fallback
+        const img = document.getElementById('resultImage');
+        img.src = imagePath;
+        img.onerror = () => {
+            img.src = fallbackPath;
+        };
 
         document.getElementById('confidenceBar').style.width = `${mockResult.confidence * 100}%`;
         document.getElementById('confidenceValue').textContent = `${Math.round(mockResult.confidence * 100)}%`;
 
         const top3List = document.getElementById('top3List');
-        top3List.innerHTML = ""; // Clear previous
+        top3List.innerHTML = "";
         mockResult.top_3_predictions.forEach(([crop, prob]) => {
             const li = document.createElement('li');
             li.textContent = `${crop} (${Math.round(prob * 100)}%)`;
             top3List.appendChild(li);
         });
 
-        // Dynamic tip
+        // Add dynamic tip
         const tips = {
             "Rice": "Rice thrives in flooded fields with high humidity and rich alluvial soil.",
             "Wheat": "Wheat prefers cooler temperatures and well-drained loamy soils.",
@@ -60,6 +68,6 @@ document.getElementById('cropForm').addEventListener('submit', function(e) {
             "Pulses": "Pulses enrich soil nitrogen and grow well in loamy or black soils.",
             "Coffee": "Coffee needs shade, high humidity, and well-drained laterite soil."
         };
-        document.getElementById('tipText').textContent = tips[mockResult.predicted_crop] || "Crops thrive when nutrients are balanced. Always test soil before planting!";
+        document.getElementById('tipText').textContent = tips[mockResult.predicted_crop] || "Crops thrive when nutrients are balanced.";
     }, 1500);
 });
