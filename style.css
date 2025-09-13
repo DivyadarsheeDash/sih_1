@@ -79,17 +79,7 @@ a {
     align-items: center;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo img {
-    height: 40px;
-}
-
-.logo h1 {
+.header h1 {
     font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: -0.5px;
@@ -134,11 +124,6 @@ nav a:hover {
     max-width: 600px;
 }
 
-.hero-image {
-    flex: 1;
-    text-align: center;
-}
-
 .hero-image img {
     width: 100%;
     max-width: 500px;
@@ -170,10 +155,6 @@ nav a:hover {
     .form-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-}
-
-.form-group {
-    text-align: left;
 }
 
 .form-group label {
