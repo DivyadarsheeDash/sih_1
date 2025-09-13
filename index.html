@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yield X – AI-Powered Crop Predictor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/icons/logo.svg" alt="Yield X Logo">
+                <h1>Yield X</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#predict">Predict</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>🌱 Predict the Best Crop for Your Soil</h2>
+            <p>Yield X uses AI to analyze N, P, K, pH, rainfall, temperature, humidity, and soil type to recommend the most suitable crop.</p>
+            <a href="#predict" class="btn-primary">Start Predicting →</a>
+        </div>
+        <div class="hero-image">
+            <img src="assets/images/rice.jpeg" alt="Healthy Rice Field">
+        </div>
+    </section>
+
+    <!-- Prediction Form Section -->
+    <section id="predict" class="predict-section">
+        <div class="container">
+            <h2>📊 Enter Your Soil & Climate Data</h2>
+            <form id="cropForm">
+                <div class="form-grid">
+                    <!-- Row 1 -->
+                    <div class="form-group">
+                        <label for="N">Nitrogen (N)</label>
+                        <input type="number" id="N" name="N" min="0" max="100" step="0.1" value="40" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="P">Phosphorus (P)</label>
+                        <input type="number" id="P" name="P" min="0" max="100" step="0.1" value="30" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="K">Potassium (K)</label>
+                        <input type="number" id="K" name="K" min="0" max="100" step="0.1" value="35" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pH">Soil pH</label>
+                        <input type="number" id="pH" name="pH" min="3.5" max="9.0" step="0.1" value="6.5" required>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="form-group">
+                        <label for="Rainfall">Rainfall (mm)</label>
+                        <input type="number" id="Rainfall" name="Rainfall" min="100" max="2000" step="10" value="1000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Temperature">Temperature (°C)</label>
+                        <input type="number" id="Temperature" name="Temperature" min="10" max="45" step="0.5" value="25" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Humidity">Humidity (%)</label>
+                        <input type="number" id="Humidity" name="Humidity" min="20" max="100" step="1" value="70" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="SoilType">Soil Type</label>
+                        <select id="SoilType" name="SoilType" required>
+                            <option value="">Select Soil Type</option>
+                            <option value="Sandy">Sandy</option>
+                            <option value="Loamy">Loamy</option>
+                            <option value="Black">Black</option>
+                            <option value="Alluvial">Alluvial</option>
+                            <option value="Laterite">Laterite</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">🔍 Predict My Crop</button>
+            </form>
+
+            <!-- Prediction Results (Hidden Initially) -->
+            <div id="results" class="results hidden">
+                <h3>✅ Prediction Results</h3>
+                <div class="result-card">
+                    <div class="crop-image">
+                        <img id="resultImage" src="" alt="Predicted Crop">
+                    </div>
+                    <div class="crop-info">
+                        <h4 id="predictedCrop">Rice</h4>
+                        <div class="confidence-meter">
+                            <span>Confidence:</span>
+                            <div class="meter">
+                                <div id="confidenceBar" style="width: 70%;"></div>
+                            </div>
+                            <span id="confidenceValue">70%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>🏆 Top 3 Recommended Crops</h4>
+                <ul id="top3List" class="top3-list"></ul>
+
+                <div class="tips">
+                    <h5>💡 Pro Tip:</h5>
+                    <p id="tipText">Crops thrive when nutrients are balanced. Always test soil before planting!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About Yield X</h2>
+            <p>
+                Yield X is an AI-powered agricultural assistant designed to help farmers and agronomists make data-driven decisions.
+                By analyzing soil composition and environmental conditions, our model predicts the most suitable crops with over 92% accuracy.
+            </p>
+            <p>
+                Built using Random Forest classification on real-world datasets of NPK levels, rainfall, temperature, humidity, and soil types across India.
+            </p>
+            <div class="features">
+                <div class="feature">
+                    <h3>🌾 Precision Farming</h3>
+                    <p>Match crops to micro-climates and soil profiles.</p>
+                </div>
+                <div class="feature">
+                    <h3>📈 AI-Powered Insights</h3>
+                    <p>Machine learning trained on 150+ soil-crop samples.</p>
+                </div>
+                <div class="feature">
+                    <h3>🌍 Sustainable Yield</h3>
+                    <p>Reduce waste, increase productivity, protect land.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yield X. All rights reserved. | Powered by AI & Agriculture</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
